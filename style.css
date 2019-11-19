@@ -1,0 +1,39 @@
+body {
+	margin: 0;
+	background-color: #EEE;
+	color: #222;
+}
+
+#header {
+	height: 40px;
+	width: 100%;
+	text-align: center;
+
+	background-color: #F8F8F8;
+	border-bottom: 1px solid #000;
+	text-align: right;
+	padding: 0 20px;
+}
+
+#content {
+	margin: 0 auto;
+	padding: 10px 80px;
+
+	font-size: 14pt;
+}
+
+table {
+	height: 100%;
+	border: none;
+	margin: 0;
+}
+
+td {
+	padding: 5px 25px;
+	cursor: pointer;
+	border: none;
+}
+
+td:hover {
+	background-color: #DDF;
+}
