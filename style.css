@@ -8,9 +8,8 @@ body {
 	height: 40px;
 	width: 100%;
 	text-align: center;
-
+	border-bottom: 1px solid #555;
 	background-color: #F8F8F8;
-	border-bottom: 1px solid #000;
 	text-align: right;
 	padding: 0 20px;
 }
@@ -25,13 +24,16 @@ body {
 table {
 	height: 100%;
 	border: none;
+	border-collapse: collapse;
 	margin: 0;
+}
+
+tr {
 }
 
 td {
 	padding: 5px 25px;
 	cursor: pointer;
-	border: none;
 }
 
 td:hover {
