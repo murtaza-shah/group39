@@ -1,41 +1,51 @@
 body {
 	margin: 0;
-	background-color: #EEE;
-	color: #222;
+	background-color: #5AF;
+	color: #FFF;
 }
 
 #header {
 	height: 40px;
 	width: 100%;
 	text-align: center;
-	border-bottom: 1px solid #555;
-	background-color: #F8F8F8;
-	text-align: right;
-	padding: 0 20px;
 }
 
 #content {
-	margin: 0 auto;
-	padding: 10px 80px;
-
-	font-size: 14pt;
+	margin: 20px auto;
+	width: 400px;
+	height: auto;
+	background-color: #8BF;
+	text-align: center;
+	padding: 20px;
+	border: 1px solid #FFF;
 }
 
 table {
-	height: 100%;
-	border: none;
 	border-collapse: collapse;
-	margin: 0;
+	background-color: #8BE;
+	width: 100%;
 }
 
-tr {
+th, td {
+	border: 1px solid #FFF;
+	padding: 5px;
+	text-align: center;
 }
 
-td {
-	padding: 5px 25px;
+button {
+	margin: 5px;
+	background-color: #FFF;
+	color: #222;
+	outline: none;
+	border: none;
+
+	width: 80px;
+	height: 60px;
+	box-shadow: 2px 2px;
+
 	cursor: pointer;
 }
 
-td:hover {
-	background-color: #DDF;
+button:hover {
+	background-color: #AFF;
 }
