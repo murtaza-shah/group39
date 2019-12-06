@@ -1,44 +1,43 @@
 <?php
-function getConnection() {
-	$servername = "fdb16.awardspace.net";
-	$serverusername = "3230701_db";
-	$serverpassword = "password2";
-	$dbname = "3230701_db";
-
-	$c = new mysqli($servername, $serverusername, $serverpassword, $dbname);
-	if ($c->connect_error) {
-		die("Connection Failed: " . $c->connect_error);
-	} else {
-		return $c;
-	}
-}
+include "./connection.php";
 
 $connection = getConnection();
 
-
 $sql = "SHOW TABLES LIKE 'Doctor'";
 $result = $connection->query($sql);
+$num_rows = $result->num_rows;
+echo "Doctor Rows: " . $num_rows . "<br>";
 if (!($result->num_rows > 0)) {
 	$sql = "CREATE TABLE Doctor
-			(DrID INT NOT NULL,
+			(DrID INT AUTO_INCREMENT NOT NULL,
 			FName VARCHAR(15) NOT NULL,
 			LName VARCHAR(15) NOT NULL,
 			OpNum INT,
 			PRIMARY KEY (DrID) );";
 	$connection->query($sql);
+} else {
+	echo "Table 'Doctor' already exists <br>";
 }
 
 $sql = "SHOW TABLES LIKE 'Nurse'";
 $result = $connection->query($sql);
+
+$num_rows = $result->num_rows;
+echo "Nurse Rows: " . $num_rows . "<br>";
+
 if (!($result->num_rows > 0)) {
-	$sql = "CREATE TABLE ​Nurse 
-	(NurseID INT ​NOT NULL​,
-	FName   VARCHAR(15) ​NOT NULL​,
-	LName VARCHAR(15) ​NOT NULL​, 
-	DrWaitList INT,
-	PWaitTime Timestamp,
-	PRIMARY KEY ​(NurseID));"
+	$sql = "CREATE TABLE Nurse 
+			(NurseID INT AUTO_INCREMENT NOT NULL, 
+			FName VARCHAR(15) NOT NULL,
+			LName VARCHAR(15) NOT NULL, 
+			DrWaitList INT, 
+			PWaitTime Timestamp, 
+			PRIMARY KEY (NurseID) );";
 	$connection->query($sql);
+
+	printf("%s<br>", $connection->info);
+} else {
+	echo "Table 'Nurse' already exists <br>";
 }
 
 $sql = "SHOW TABLES LIKE 'Patient'";
@@ -50,7 +49,7 @@ if (!($result->num_rows > 0)) {
 	LName VARCHAR(15) ​NOT NULL​,
 	SessionID INT, 
 	DrWaitList, 
-	PRIMARY KEY ​(AHC) ); "
+	PRIMARY KEY ​(AHC) ); ";
 	$connection->query($sql);
 }
 
@@ -64,7 +63,7 @@ if (!($result->num_rows > 0)) {
 	TProvided VARCHAR(15),
 	DrID INT ​NOT NULL​,
 	PRIMARY KEY ​(SessionID), 
-	FOREIGN KEY ​(DrID) ​REFERENCES ​Doctor(DrID) ​ON DELETE ​SET NULL ​ON UPDATE CASCADE); "
+	FOREIGN KEY ​(DrID) ​REFERENCES ​Doctor(DrID) ​ON DELETE ​SET NULL ​ON UPDATE CASCADE); ";
 	$connection->query($sql);
 }
 
@@ -76,29 +75,19 @@ if (!($result->num_rows > 0)) {
 	PFName VARCHAR(15) ​NOT NULL​,
 	PLName VARCHAR(15) ​NOT NULL​,
 	PRIMARY KEY ​(DrID),
-	FOREIGN KEY ​(DrID) ​REFERENCES ​Doctor(DrID) ​ON DELETE ​CASCADE ​ON UPDATE CASCADE);"
+	FOREIGN KEY ​(DrID) ​REFERENCES ​Doctor(DrID) ​ON DELETE ​CASCADE ​ON UPDATE CASCADE);";
 	$connection->query($sql);
 }
 
 $connection->close();
 ?>
+
 <html>
+
 <head>
 	<title>Group 39 - Project</title>
-	<link rel="stylesheet" href="style.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="../style.css">
 </head>
-<body>
 
-	<div id="header">
-		<h1>Hospital Management System</h1>
-	</div>
 
-	<div id="content">
-		<p>Are you a</p>
-		<a href="./nurse/login.php"><button>Nurse</button></a>
-		<span>  or a  </span>
-		<a href="./doctor/login.php"><button>Doctor</button></a>
-	</div>
-
-</body>
 </html>
